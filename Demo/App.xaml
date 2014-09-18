@@ -1,0 +1,20 @@
+﻿<Application x:Class="Demo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
+             xmlns:vm="clr-namespace:Demo.ViewModels"
+             xmlns:inf="clr-namespace:Demo.Infrastructure"
+             xmlns:model="clr-namespace:Demo.Model">
+    <Application.Resources>
+        <clr:String x:Key="BaseURL">http://eval.espressologic.com/rest/ValsEval/nwnds/v1</clr:String>
+        <clr:String x:Key="Authenticate">{0}/@authentication</clr:String>
+        <clr:String x:Key="GetCustomers">{0}/Customers</clr:String>
+        <clr:String x:Key="GetOrders">{0}/Orders?filter=CustomerID%20%3D%20%27{1}%27</clr:String>
+        <clr:String x:Key="GetDetails">{0}/OrderDetails?filter=OrderID%20%3D%20%27{1}%27</clr:String>
+        <clr:String x:Key="GetProduct">{0}/Products?filter=ProductID%20%3D%20%27{1}%27</clr:String>
+        <Style x:Key="RightAligned" TargetType="DataGridCell">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <inf:DateConverter x:Key="DateOrNullConverter"/>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Demo.Views.OrderDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:Demo.ViewModels"
+             mc:Ignorable="d" 
+             Loaded="OrderDetails_Loaded"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.DataContext>
+        <vm:OrderDetailsViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Canvas Grid.Row="0">
+            <Label Content="Customer Name" Canvas.Left="250" Canvas.Top="20"/>
+            <Label Content="Address" Canvas.Left="250" Canvas.Top="44"/>
+            <Label Content="Phone" Canvas.Left="450" Canvas.Top="92"/>
+            <Label Content="Postal Code" Canvas.Left="250" Canvas.Top="92"/>
+            <Label Content="Order Date" Canvas.Left="250" Canvas.Top="116"/>
+            <Label Content="Amount" Canvas.Left="495" Canvas.Top="114" Width="75"/>
+            <Label Content="Required Date" Canvas.Left="250" Canvas.Top="140"/>
+            <Label Content="Ship Date" Canvas.Left="250" Canvas.Top="164"/>
+            <TextBox Text="{Binding CustomerName}" IsReadOnly="True" Canvas.Left="350" Canvas.Top="20"  Width="283"/>
+            <TextBox Text="{Binding Address}" IsReadOnly="True" Canvas.Left="350" Canvas.Top="44" Width="283"/>
+            <TextBox Text="{Binding City}" IsReadOnly="True" Canvas.Left="350" Canvas.Top="68" Width="283"/>
+            <TextBox Text="{Binding PostalCode}" IsReadOnly="True" Canvas.Left="350" Canvas.Top="92" Width="85"/>
+            <TextBox Text="{Binding Phone}" IsReadOnly="True" Canvas.Left="495" Canvas.Top="92" Width="138"/>
+            <TextBox Text="{Binding OrderDate, Converter={StaticResource DateOrNullConverter}}" IsReadOnly="True" Canvas.Left="350" Canvas.Top="116" Width="135"/>
+            <TextBox Text="{Binding CurrentOrder.AmountTotal, StringFormat=&quot;N2&quot;}" IsReadOnly="True" Canvas.Left="550" Canvas.Top="116" Width="83"/>
+            <TextBox Text="{Binding RequiredDate, Converter={StaticResource DateOrNullConverter}}" IsReadOnly="True" Canvas.Left="350" Canvas.Top="140" Width="135"/>
+            <TextBox Text="{Binding ShippedDate, Converter={StaticResource DateOrNullConverter}}" IsReadOnly="True" Canvas.Left="350" Canvas.Top="164" Width="135"/>
+            <Rectangle Width="400" Height="180" Stroke="Black" Margin="250,10" HorizontalAlignment="Center"/>
+        </Canvas>
+        <DataGrid Grid.Row="1" Width="700" Margin="20,20"  IsReadOnly="True"
+                      AutoGenerateColumns="False" ItemsSource="{Binding Details}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ProductName}" Header="Product" Width="*"/>
+                <DataGridTextColumn Binding="{Binding UnitPrice, StringFormat=&quot;N2&quot;}" CellStyle="{StaticResource RightAligned}" Header="Unit Price" Width="70"/>
+                <DataGridTextColumn Binding="{Binding Quantity}" Header="Quantity" CellStyle="{StaticResource RightAligned}" Width="55"/>
+                <DataGridTextColumn Binding="{Binding Amount, StringFormat=&quot;N2&quot;}" CellStyle="{StaticResource RightAligned}" Header="Amount" Width="70"/>
+                <DataGridTextColumn Binding="{Binding Discount, StringFormat=&quot;P&quot;}" CellStyle="{StaticResource RightAligned}" Header="Discount" Width="70"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Content="Back" Command="{Binding BackButton}" Width="120" Grid.Row="2"/>
+    </Grid>
+</UserControl>

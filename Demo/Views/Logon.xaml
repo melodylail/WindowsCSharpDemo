@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Demo.Views.Logon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:Demo.ViewModels"
+             mc:Ignorable="d"
+             Loaded="Logon_Loaded"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <BitmapImage x:Key="Logo" UriSource="/Images/EspressoLogicLogo.png"/>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <vm:LogonViewModel/>
+    </UserControl.DataContext>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="CommandBinding_Executed" CanExecute="CommandBinding_CanExecute"/>
+    </UserControl.CommandBindings>
+    <UserControl.InputBindings>
+        <KeyBinding Command="ApplicationCommands.Open"  Key="Enter"/>
+    </UserControl.InputBindings>
+    <DockPanel LastChildFill="False">
+        <Image DockPanel.Dock="Top" Margin="10,20" Source="{StaticResource Logo}"/>
+        <DockPanel DockPanel.Dock="Top" Margin="10,0">
+            <Label DockPanel.Dock="Left" Width="70" Content="Username"/>
+            <TextBox Name="LoginBox" DockPanel.Dock="Right" Text="{Binding Logon}" Cursor="IBeam" TabIndex="1"/>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" Margin="10,0">
+            <Label DockPanel.Dock="Left" Width="70" Content="Password"/>
+            <PasswordBox DockPanel.Dock="Right" Name="passBox" Cursor="IBeam" Password="" TabIndex="2"/>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" Margin="10,0">
+            <Label DockPanel.Dock="Left" Width="70" Content="BaseURL"/>
+            <TextBox Name="BaseURL" DockPanel.Dock="Right" Text="{Binding BaseURL}" Cursor="IBeam" TabIndex="3"/>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Bottom" Margin="10" LastChildFill="False">
+            <Button DockPanel.Dock="Top" Content="Logon" HorizontalAlignment="Center"
+                    Command="{Binding LogonCommand}" CommandParameter="{Binding ElementName=passBox}" TabIndex="4"/>
+        </DockPanel>
+        
+    </DockPanel>
+</UserControl>
