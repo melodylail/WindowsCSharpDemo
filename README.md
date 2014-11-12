@@ -1,4 +1,4 @@
-Windows Visual Studio WFP Application
+Windows Visual Studio WPF Application
 =================
 
 In this Visual Studio WPF sample, you learn how to logon to your Espresso Appliance, user model/view/controller to make REST API calls 
