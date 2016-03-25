@@ -65,7 +65,7 @@ namespace Demo.ViewModels
             if (apiKey == "")
             {
                 string messageBoxText = "Authentication failed.";
-                string caption = "Espresso Logic Demo";
+                string caption = "CA Live API Creator Demo";
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Warning;
 

@@ -23,7 +23,7 @@ namespace Demo.Infrastructure
                 using (client = new HttpClient())
                 { 
                     HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, requestURL);
-                    requestMessage.Headers.Add("Authorization", string.Format("Espresso {0}", ApiHelper.ApiKey + ":1"));
+                    requestMessage.Headers.Add("Authorization", string.Format("CALiveAPICreator {0}", ApiHelper.ApiKey + ":1"));
 
                     var getResponse =  client.SendAsync(requestMessage).Result;
                   
